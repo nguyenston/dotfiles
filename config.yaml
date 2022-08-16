@@ -9,33 +9,33 @@ dotfiles:
   f_bashrc:
     src: bashrc
     dst: ~/.bashrc
-    chmod: '644'
-  f_i3_config:
-    src: i3/config
-    dst: ~/.i3/config
-    chmod: '644'
+    chmod: "644"
   f_tmux.conf:
     src: tmux.conf
     dst: ~/.tmux.conf
-    chmod: '644'
-  f_config_nvim_lua_user_init.lua:
-    src: config/nvim/lua/user/init.lua
-    dst: ~/.config/nvim/lua/user/init.lua
-    chmod: '644'
-  f_config_polybar_config:
-    src: config/polybar/config
-    dst: ~/.config/polybar/config
-    chmod: '644'
-  f_config_polybar_launch.sh:
-    src: config/polybar/launch.sh
-    dst: ~/.config/polybar/launch.sh
-    chmod: '755'
+    chmod: "644"
+  f_config_rofi_config.rasi:
+    src: config/rofi/config.rasi
+    dst: ~/.config/rofi/config.rasi
+    chmod: "644"
+  d_i3:
+    src: i3
+    dst: ~/.i3
+    chmod: "755"
+  d_config_polybar:
+    src: config/polybar
+    dst: ~/.config/polybar
+    chmod: "755"
+  d_config_nvim_lua_user:
+    src: config/nvim/lua/user
+    dst: ~/.config/nvim/lua/user
+    chmod: "755"
 profiles:
   nguyenston:
     dotfiles:
-    - f_bashrc
-    - f_i3_config
-    - f_tmux.conf
-    - f_config_nvim_lua_user_init.lua
-    - f_config_polybar_config
-    - f_config_polybar_launch.sh
+      - f_bashrc
+      - f_tmux.conf
+      - f_config_rofi_config.rasi
+      - d_i3
+      - d_config_polybar
+      - d_config_nvim_lua_user

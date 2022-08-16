@@ -33,7 +33,7 @@ bindsym $mod+Return exec st
 bindsym $mod+Shift+o kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+d exec --no-startup-id rofi -show run -show-icons -icon-theme "Papirus" -sidebar-mode
 # bindsym Control+j exec --no-startup-id rofi -show window
 
 # launch categorized menu
