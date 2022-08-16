@@ -9,33 +9,33 @@ dotfiles:
   f_bashrc:
     src: bashrc
     dst: ~/.bashrc
-    chmod: "644"
+    chmod: '644'
   f_tmux.conf:
     src: tmux.conf
     dst: ~/.tmux.conf
-    chmod: "644"
+    chmod: '644'
   f_config_rofi_config.rasi:
     src: config/rofi/config.rasi
     dst: ~/.config/rofi/config.rasi
-    chmod: "644"
+    chmod: '644'
   d_i3:
     src: i3
     dst: ~/.i3
-    chmod: "755"
+    chmod: '755'
   d_config_polybar:
     src: config/polybar
     dst: ~/.config/polybar
-    chmod: "755"
+    chmod: '755'
   d_config_nvim_lua_user:
     src: config/nvim/lua/user
     dst: ~/.config/nvim/lua/user
-    chmod: "755"
+    chmod: '755'
 profiles:
   nguyenston:
     dotfiles:
-      - f_bashrc
-      - f_tmux.conf
-      - f_config_rofi_config.rasi
-      - d_i3
-      - d_config_polybar
-      - d_config_nvim_lua_user
+    - f_bashrc
+    - f_tmux.conf
+    - f_config_rofi_config.rasi
+    - d_i3
+    - d_config_polybar
+    - d_config_nvim_lua_user
