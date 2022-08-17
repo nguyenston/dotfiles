@@ -27,7 +27,7 @@ font monospace
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec st
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+o kill
@@ -410,7 +410,7 @@ client.placeholder      $CL_BG      $CL_BG      $CL_WHITE $CL_BLACK  $CL_BG
 
 
 # bindsym $mod+Shift+c exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
-exec_always --no-startup-id picom --config  ~/.config/picom.conf
+exec_always --no-startup-id picom --config ~/.config/picom/picom.conf
 exec_always --no-startup-id nitrogen --set-zoom-fill --random ~/.config/i3/wallpapers
 bindsym $mod+Shift+c exec --no-startup-id flameshot gui
 bindsym $mod+Shift+m exec --no-startup-id autorandr -c
