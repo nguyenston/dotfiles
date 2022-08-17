@@ -49,7 +49,7 @@ alias tls="t ls"
 alias tn="t new -t"
 alias dotdrop="~/Projects/dotfiles/dotdrop.sh --cfg=~/Projects/dotfiles/config.yaml"
 
-alias gdrv="grive -p ~/shared/google-drive -P"
+alias gdrv="grive -p ~/Projects/google-drive -P"
 # path export for ruby and gems
 export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
 export DOTDROP_PROFILE="nguyenston"
