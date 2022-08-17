@@ -63,13 +63,14 @@ module-margin-left = 0
 module-margin-right = 1
 
 font-0 = JetBrains Mono:style=Regular:size=10
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = 3270Medium Nerd Font:style=Medium
+font-1 = JetBrainsMono Nerd Font:style=Regular:size=12
+font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-3 = 3270Medium Nerd Font:style=Medium
 
 
 modules-left = i3
 modules-center = title
-modules-right = filesystem backlight alsa memory cpu battery temperature date
+modules-right = filesystem backlight pulseaudio memory cpu battery temperature date
 
 tray-position = right
 tray-padding = 2
@@ -237,11 +238,38 @@ date-alt = " %Y-%m-%d"
 time = %H:%M
 time-alt = %H:%M
 
-format-prefix = " "
+format-prefix = ""
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = ${colors.blue-alt}
 
 label = %date% %time%
+
+[module/pulseaudio]
+type = internal/pulseaudio
+; Sink to be used, if it exists (find using `pacmd list-sinks`, name field)
+; If not, uses default sink
+; sink = alsa_output.pci-0000_12_00.3.analog-stereo
+
+; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
+; Default: true
+use-ui-max = true
+
+; Interval for volume increase/decrease (in percent points)
+; Default: 5
+interval = 5
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage:3%%
+label-volume-foreground = ${root.foreground}
+format-volume-underline = ${colors.violet}
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+format-muted-underline = ${colors.violet}
+format-muted-prefix = " "
+format-muted-foreground = ${colors.foreground-alt}
+label-muted = %percentage:3%%
 
 [module/alsa]
 type = internal/alsa
@@ -277,15 +305,15 @@ battery = BAT0
 adapter = AC
 full-at = 98
 
-format-charging-prefix = " "
+format-charging-prefix = ""
 format-charging-prefix-foreground = #FFFF00
 format-charging = <label-charging>
 format-charging-underline = ${colors.gold}
 
-format-discharging = <ramp-capacity> <label-discharging>
+format-discharging = <ramp-capacity><label-discharging>
 format-discharging-underline = ${colors.blue}
 
-format-full-prefix = " "
+format-full-prefix = ""
 format-full-prefix-foreground = ${colors.green}
 format-full-underline = ${colors.green}
 

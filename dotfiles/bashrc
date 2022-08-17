@@ -19,7 +19,7 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.g
 export BROWSER='vivaldi-stable'
 
 # set default text editor
-export VISUAL='vim'
+export VISUAL='nvim'
 export EDITOR="$VISUAL"
 
 source ~/.cargo/env
@@ -47,9 +47,12 @@ alias t="tmux"
 alias ta="t a -t"
 alias tls="t ls"
 alias tn="t new -t"
-alias dotdrop="~/shared/dotfiles/dotdrop.sh --cfg=~/shared/dotfiles/config.yaml"
+alias dotdrop="~/Projects/dotfiles/dotdrop.sh --cfg=~/Projects/dotfiles/config.yaml"
 
 alias gdrv="grive -p ~/shared/google-drive -P"
 # path export for ruby and gems
 export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
 export DOTDROP_PROFILE="nguyenston"
+
+# path export for julia
+export PATH="$HOME/.julia/julia-1.7.3/bin:$PATH"

@@ -20,7 +20,7 @@ dotfiles:
     chmod: '644'
   d_i3:
     src: i3
-    dst: ~/.i3
+    dst: ~/.config/i3
     chmod: '755'
   d_config_polybar:
     src: config/polybar
@@ -29,6 +29,14 @@ dotfiles:
   d_config_nvim_lua_user:
     src: config/nvim/lua/user
     dst: ~/.config/nvim/lua/user
+    chmod: '755'
+  d_config_picom:
+    src: config/picom
+    dst: ~/.config/picom
+    chmod: '755'
+  d_config_alacritty:
+    src: config/alacritty
+    dst: ~/.config/alacritty
     chmod: '755'
 profiles:
   nguyenston:
@@ -39,3 +47,5 @@ profiles:
     - d_i3
     - d_config_polybar
     - d_config_nvim_lua_user
+    - d_config_picom
+    - d_config_alacritty
