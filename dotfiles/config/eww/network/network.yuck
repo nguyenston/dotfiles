@@ -1,0 +1,196 @@
+
+(defwidget network [?transpose]
+  (box
+    :class "widget_block ${transpose == true ? "vertical" : "horizontal"} network"
+    :orientation {transpose == true ? "v" : "h"}
+    (wifi :transpose transpose)))
+
+(defpoll available_wifi
+  :interval "4000s"
+  `~/.config/eww/network/query_available_wifi.sh`)
+(defvar reveal_wifi_panel false)
+(defwidget wifi [?transpose]
+  (box
+    :orientation {transpose == true ? "v" : "h"}
+    (eventbox
+      :class "wifi"
+      :cursor "pointer"
+      :onrightclick 
+        {reveal_wifi_panel ? 
+          '${EWW_CMD} close wifi_panel_${transpose == true ? "vertical" : "horizontal"} \
+            & ${EWW_CMD} update reveal_wifi_panel=false' : 
+          '${EWW_CMD} update expanded_id=-1 \
+            && ${EWW_CMD} open wifi_panel_${transpose == true ? "vertical" : "horizontal"} \
+            & ${EWW_CMD} update reveal_wifi_panel=true'} 
+      (label
+        :class "icon"
+        :text "直"))))
+
+(defwindow wifi_panel_vertical
+  :monitor 0
+  :reserve (struts :distance "1px" :side "left")
+  :wm-ignore false
+  :stacking "fg"
+  :windowtype "dialog"
+  :geometry (geometry :anchor "bottom left" :x 50 :y -10 :width "400px" :height "500px")
+  ; :geometry (geometry :width "300px" :height "500px")
+  (wifi_panel))
+      
+(defwidget wifi_panel []
+  (box
+    :width 300
+    :class "widget_panel wifi"
+    :space-evenly false
+    :orientation "v"
+    :spacing 10
+    (label
+      :class "kanji"
+      :text "無線")
+    (scroll
+      :vexpand true
+      :vscroll true
+      :hscroll false
+      (box
+        :orientation "v"
+        :valign "start"
+        :space-evenly false
+        (for entry in available_wifi
+          (wifi_entry :entry entry))))))
+
+(defvar expanded_id -1)
+(defvar signal_symbol '["▂___","▂▄__","▂▄▆_","▂▄▆█"]')
+(defvar entry_type '{
+  "WPA2":"entry_wpa_personal",
+  "WPA2 802.1X":"entry_wpa_enterprise",
+  "known": "entry_known",
+  "": "entry_no_security"}')
+(defwidget wifi_entry [entry]
+  (eventbox
+    :class "wifi_entry"
+    :onclick {entry.index == expanded_id ? 
+                "${EWW_CMD} update expanded_id=-1" : 
+                "${EWW_CMD} update expanded_id=${entry.index}"}
+    (box
+      :orientation "v"
+      :class "container"
+      :space-evenly false
+      (box
+        :height 40
+        :space-evenly false
+        :spacing 10
+        :class "entry_name ${entry.active ? "selected" : ""}"
+        (label
+          :xalign 0
+          :text "${signal_symbol[(entry.strength - 1)]}")
+        (label
+          :xalign 0
+          :text "${entry.ssid}"
+          :limit-width 25))
+      (revealer
+        :class "container"
+        :transition "slidedown"
+        :reveal {entry.index == expanded_id}
+        (box
+          :orientation "v"
+          :space-evenly false
+          (literal
+            :content 
+              {entry.active ? 
+                "(entry_in_use :entry entry)" : 
+                "(${entry_type["${entry.security}"]} :entry entry)"})))))) 
+
+(defvar username "")
+(defvar password "")
+(defwidget entry_in_use [entry]
+  (button
+    :halign "end"
+    :class "button"
+    (label
+      :class "entry_name"
+      :text "Disconnect")))
+
+(defwidget entry_known [entry]
+  (box
+    (button
+      :halign "end"
+      :class "button"
+      (label
+        :class "entry_name"
+        :text "Forget"))
+    (button
+      :halign "end"
+      :class "button"
+      (label
+        :class "entry_name"
+        :text "Connect"))))
+
+(defwidget entry_no_security [entry]
+  (button
+    :halign "end"
+    :class "button"
+    (label
+      :class "entry_name"
+      :text "Connect")))
+
+(defwidget entry_wpa_personal [entry]
+  (box
+    :orientation "v"
+    :spacing 10
+    :space-evenly false
+    (box
+      :space-evenly false
+      :spacing 10
+      (label
+        :class "entry_name"
+        :text "Password:")
+      (input
+        :class "input"
+        :password true
+        :hexpand true))
+    (button
+      :halign "end"
+      :class "button"
+      (label
+        :class "entry_name"
+        :text "Connect"))))
+
+(defwidget entry_wpa_enterprise [entry]
+  (box
+    :orientation "v"
+    :spacing 10
+    :space-evenly false
+    (box
+      :space-evenly false
+      :spacing 10
+      (label
+        :class "entry_name"
+        :text "Auth:")
+      (combo-box-text
+        :hexpand true
+        :class "selection_box"
+        :items '[TTLS,PEAP]'))
+    (box
+      :space-evenly false
+      :spacing 10
+      (label
+        :class "entry_name"
+        :text "Username:")
+      (input
+        :class "input"
+        :hexpand true))
+    (box
+      :space-evenly false
+      :spacing 10
+      (label
+        :class "entry_name"
+        :text "Password:")
+      (input
+        :class "input"
+        :password true
+        :hexpand true))
+    (button
+      :halign "end"
+      :class "button"
+      (label
+        :class "entry_name"
+        :text "Connect"))))

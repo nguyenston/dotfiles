@@ -1,0 +1,85 @@
+;; global static variables
+(defvar workspace '[{"name": "月", "number": 1, "color": "pink"},
+                    {"name": "火", "number": 2, "color": "red"},
+                    {"name": "水", "number": 3, "color": "cyan"},
+                    {"name": "木", "number": 4, "color": "green"},
+                    {"name": "金", "number": 5, "color": "purple"},
+                    {"name": "土", "number": 6, "color": "brown"}]')
+
+(defvar workspace_layout '[[0, 1, 2, 3, 4, 5]]')
+
+(defvar workspace_status_label '["empty", "occupied"]')
+
+
+;; dynamic variables
+;; The variables below are indexed by monitor
+;; status 0: empty 1: occupied 2: urgent
+(defvar workspace_urgent "[[0, 0, 0, 0, 0, 0]]")
+(defvar workspace_status '[[0, 0, 0, 0, 0, 0]]')
+(defvar workspace_focus '[0]')
+
+(defwidget workspace_indicator [monitor ?transpose]
+  (box 
+    :class "ws_ind"
+    :orientation "${transpose == true ? "v" : "h"}"
+    :space-evenly false
+    :spacing 5
+    (box
+      :valign "center"
+      :halign "center"
+      :width 30
+      :height 30
+      (ws_ind_focus :focused "${workspace_focus[monitor]}"))
+    (box
+      :class "widget_block ${transpose == true ? "vertical" : "horizontal"}"
+      :orientation "${transpose == true ? "h" : "v"}"
+      :space-evenly true
+      :valign "center"
+      :halign "center"
+      (for row in workspace_layout
+        (ws_ind_row 
+          :row "${row}"
+          :statuses "${workspace_status[monitor]}"
+          :focused "${workspace_focus[monitor]}"
+          :urgent "${workspace_urgent[monitor]}"
+          :transpose "${transpose}")))))
+
+(defwidget ws_ind_row [row statuses focused urgent ?transpose]
+  (box
+    :class "ws_ind_row"
+    :orientation "${transpose == true ? "v" : "h"}"
+    :hexpand false
+    :vexpand false
+    (for elem in row
+      (ws_ind_cell 
+        :content "${workspace[elem]}" 
+        :status "${workspace_status_label[statuses[elem]]}"
+        :focused {elem == focused}
+        :urgent {urgent[elem]}))))
+      
+
+
+(defwidget ws_ind_cell [content status focused urgent]
+  (eventbox
+    :class "ws_ind_cell_bg"
+    :cursor "hand"
+    :onclick "${EWW_CONFIG_DIR}/workspace_indicator/awesomewm/awesome_set_workspace.sh ${content.number}"
+    :valign "center"
+    :halign "center"
+    (label
+      :width 30
+      :height 30
+      :xalign 0.54
+      :yalign {focused ? 0.4 : 0.5}
+      :class "ws_ind_cell status-${focused ? "focused" : status} ${urgent == 1 && !focused ? "white" : content.color}"
+      :text "ﰉ")))
+
+(defwidget ws_ind_focus [focused]
+  (box
+    :class "ws_ind_focus bg-${workspace[focused].color}"
+    :hexpand false
+    :vexpand false
+    :height 30
+    :width 30
+    (label
+      :text "${workspace[focused].name}")))

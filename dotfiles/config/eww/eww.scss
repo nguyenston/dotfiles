@@ -1,0 +1,48 @@
+$bg_alt: #414868;
+// $bg: #1a1b26;
+$bg: rgba(26, 27, 38, 0.75);
+$gold: #dbac3f;
+
+.bar_main {
+  background-color: transparent;
+}
+
+.widget_block {
+  background-color: $bg;
+  border-style: solid;
+  border-radius: 0.5em;
+  border-color: $gold;
+  &.horizontal {
+    padding: 0px 5px 0px 5px;
+    border-width: 0px 2px 0px 2px;
+  }
+  &.vertical {
+    padding: 5px 0px 5px 0px;
+    border-width: 2px 0px 2px 0px;
+  }
+}
+
+.widget_panel {
+  background-color: #1a1b26;
+  border-style: solid;
+  border-width: 1px;
+  border-color: $gold;
+  border-radius: 1em;
+  padding: 10px;
+  .button {
+    background-color: $bg_alt;
+    border-radius: 0.3em;
+  }
+  .button:hover {
+    background-color: #3958ad;
+  }
+}
+
+.label {
+  font-family: "JetBrains Mono";
+}
+
+@import "workspace_indicator/workspace_indicator";
+@import "system_monitor/system_monitor";
+@import "audio_brightness/audio_brightness";
+@import "network/network";

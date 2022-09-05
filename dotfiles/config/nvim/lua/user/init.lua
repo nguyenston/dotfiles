@@ -49,11 +49,12 @@ local config = {
     },
     g = {
       mapleader = " ", -- sets vim.g.mapleader
-      tokyonight_transparent = true,
+      tokyonight_transparent = not vim.g.neovide,
       -- override comment color
       tokyonight_colors = {
         -- comment = "#7f6c80",
       },
+      neovide_transparency = 0.95,
     },
   },
   -- If you need more control, you can use the function()...end notation
@@ -230,6 +231,10 @@ local config = {
       --   end,
       -- },
 
+      -- eww config "yuck" syntax highlight
+      ["elkowar/yuck.vim"] = {},
+      -- rasi syntax highlighting
+      ["Fymyte/rasi.vim"] = { ft = "rasi" },
       -- tokyonight theme
       ["folke/tokyonight.nvim"] = {},
       -- Vim surround
@@ -367,6 +372,7 @@ local config = {
       pattern = "plugins.lua",
       command = "source <afile> | PackerSync",
     })
+
     -- require("packer").use "folke/tokyonight.nvim"
 
     -- Set up custom filetypes

@@ -1,0 +1,91 @@
+* {
+  all: unset;
+}
+
+$speaker_color: #a96add;
+$speaker_color_muted: #5b486b;
+$audio_color: #6a9edd;
+$mic_color: #6adda9;
+$mic_color_muted: #486b5b;
+$brightness_color: #dda96a;
+$gold: #dbac3f;
+$bg: #222638;
+$bg_alt: #2b3047;
+
+.speaker {
+  color: $speaker_color;
+  border-radius: 0.5em;
+  &.muted {
+    color: $speaker_color_muted;
+  }
+}
+.audio {
+  color: $audio_color;
+  border-radius: 0.5em;
+}
+.mic {
+  color: $mic_color;
+  border-radius: 0.5em;
+  &.muted {
+    color: $mic_color_muted;
+  }
+}
+.brightness {
+  color: $brightness_color;
+  border-radius: 0.5em;
+}
+
+.icon_block:hover {
+  background-color: $bg;
+  border-radius: 0.5em;
+}
+
+.audio_brightness {
+  .circle {
+    background-color: $bg;
+    color: $gold;
+  }
+  .circle_top {
+    color: $gold;
+  }
+  .label {
+    font-size: 150%;
+  }
+  .text {
+    font-size: 110%;
+    font-weight: bold;
+    font-family: "JetBrains Mono";
+  }
+  .kanji {
+    font-family: "Zen Maru Gothic";
+    font-weight: 500;
+    font-size: 250%;
+  }
+  .icon {
+    font-size: 180%;
+    font-weight: normal;
+    font-family: "JetBrainsMono Nerd Fonts";
+  }
+}
+.dev_entry {
+  background-color: $bg_alt;
+  border-radius: 0.5em;
+  .separator {
+    border-style: solid;
+    border-left-width: 1px;
+    border-color: grey;
+  }
+  .button {
+    border-style: solid;
+    border-width: 1px;
+    border-color: $gold;
+    background-color: $bg;
+  }
+  .dev_name {
+    font-family: "JetBrains Mono";
+  }
+  .label {
+    font-size: 180%;
+    font-weight: bold;
+  }
+}

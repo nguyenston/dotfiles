@@ -1,0 +1,68 @@
+* {
+  all: unset;
+}
+
+$cpu_color: #db7adb;
+$ram_color: #7adbdb;
+$battery_color_charging: #dbdb7a;
+$battery_color_discharging: #dbab7a;
+$battery_color_full: #abdb7a;
+$temperature_color: #e07f86;
+$bg: #414868;
+$gold: #ebbf31;
+
+.system_monitor {
+  .cpu {
+    color: $cpu_color;
+    border-color: $cpu_color;
+  }
+  .ram {
+    color: $ram_color;
+    border-color: $ram_color;
+  }
+  .battery {
+    &.charging {
+      border-color: $battery_color_charging;
+      color: $battery_color_charging;
+    }
+    &.discharging {
+      border-color: $battery_color_discharging;
+      color: $battery_color_discharging;
+    }
+    &.full {
+      border-color: $battery_color_full;
+      color: $battery_color_full;
+    }
+    &.full_forced {
+      border-color: $battery_color_full;
+      color: $battery_color_full;
+    }
+  }
+  .temperature {
+    color: $temperature_color;
+    border-color: $temperature_color;
+  }
+
+  .dot {
+    font-size: 100%;
+    border-style: solid;
+    border-width: 4px;
+    border-radius: 0em;
+  }
+  .label {
+    font-family: "Zen Maru Gothic";
+    font-size: 350%;
+  }
+  .text {
+    font-family: "JetBrains Mono";
+    font-size: 110%;
+    font-weight: bold;
+  }
+  .circle {
+    background-color: $bg;
+  }
+}
+
+// .panel {
+//   padding: 100px;
+// }

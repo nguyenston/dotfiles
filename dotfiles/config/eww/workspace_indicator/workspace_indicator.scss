@@ -1,0 +1,99 @@
+* {
+  all: unset;
+}
+
+// color definitions
+$white: #ffffff;
+$pink: #cd85d0;
+$red: #d08585;
+$cyan: #85c3d0;
+$green: #78bb7b;
+$purple: #9185d0;
+$brown: #bda488;
+$gold: #ebbf31;
+$bg_alt: #222638;
+
+// define color classes
+.white {
+  color: $white;
+}
+.pink {
+  color: $pink;
+}
+.red {
+  color: $red;
+}
+.cyan {
+  color: $cyan;
+}
+.green {
+  color: $green;
+}
+.purple {
+  color: $purple;
+}
+.brown {
+  color: $brown;
+}
+
+.bg-white {
+  background-color: $white;
+}
+.bg-pink {
+  background-color: $pink;
+}
+.bg-red {
+  background-color: $red;
+}
+.bg-cyan {
+  background-color: $cyan;
+}
+.bg-green {
+  background-color: $green;
+}
+.bg-purple {
+  background-color: $purple;
+}
+.bg-brown {
+  background-color: $brown;
+}
+
+.ws_ind {
+  // Figure out new font awesome stuff
+  .ws_ind_cell {
+    font-family: "JetBrains Mono";
+    border-width: 1.5px;
+    font-size: 160%;
+
+    &.status-empty {
+      font-size: 60%;
+      opacity: 0.8;
+    }
+    &.status-occupied {
+      opacity: 1;
+    }
+    &.status-focused {
+      opacity: 1;
+      border-style: solid;
+      border-radius: 0.5em;
+      border-color: $gold;
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+  }
+
+  .ws_ind_focus {
+    font-family: "Zen Maru Gothic";
+    font-size: 17px;
+    font-weight: bold;
+    color: white;
+    border-style: solid;
+    border-radius: 0.8em;
+    border-width: 2px;
+    border-color: $gold;
+  }
+}
+
+.ws_ind_cell_bg:hover {
+  background-color: $bg_alt;
+  border-radius: 1em;
+}

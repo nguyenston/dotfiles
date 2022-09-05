@@ -114,7 +114,7 @@ font:
     style: Italic
   bold_italic:
     style: Bold Italic
-  size: 7.0
+  size: 12.0
 # If the bold family is not specified, it will fall back to the
 # value specified for the normal font.
 #

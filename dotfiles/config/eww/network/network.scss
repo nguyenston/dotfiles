@@ -1,0 +1,80 @@
+* {
+  all: unset;
+}
+$bluetooth: #4780c6;
+$wifi: #47c0c6;
+$bg: #222638;
+$bg_alt: #2b3047;
+$gold: #dbac3f;
+
+.wifi {
+  color: $wifi;
+  border-radius: 0.5em;
+  .icon {
+    font-size: 180%;
+    font-weight: normal;
+    font-family: "JetBrainsMono Nerd Fonts";
+  }
+  .kanji {
+    font-family: "Zen Maru Gothic";
+    font-weight: 500;
+    font-size: 250%;
+    border-color: $gold;
+    border-style: solid;
+    border-bottom-width: 1px;
+    padding-bottom: 10px;
+  }
+}
+
+.wifi:hover {
+  background-color: $bg;
+  border-radius: 0.5em;
+}
+
+.wifi_entry {
+  // background-color: $bg_alt;
+  font-family: "JetBrains Mono";
+  font-weight: bold;
+  font-size: 120%;
+
+  .container {
+    padding: 10px;
+  }
+  .button {
+    border-style: solid;
+    border-width: 1px;
+    border-color: $gold;
+    padding: 0px 10px 0px 10px;
+  }
+  .entry_name {
+    color: white;
+    &.selected {
+      color: $wifi;
+    }
+  }
+  .selection_box {
+    background-color: $bg-alt;
+    border-radius: 0.5em;
+  }
+  .input {
+    color: white;
+    background-color: $bg-alt;
+    border-radius: 0.5em;
+  }
+  .label {
+    font-size: 180%;
+  }
+}
+
+.wifi_entry:hover {
+  background-color: $bg;
+}
+
+combobox {
+  window.popup {
+    background-color: $bg-alt;
+  }
+  box button box {
+    padding-left: 5px;
+  }
+}
