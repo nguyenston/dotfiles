@@ -38,6 +38,14 @@ dotfiles:
     src: config/alacritty
     dst: ~/.config/alacritty
     chmod: '755'
+  f_xresources:
+    src: Xresources
+    dst: ~/.Xresources
+    chmod: '755'
+  d_config_eww:
+    src: config/eww
+    dst: ~/.config/eww
+    chmod: '755'
 profiles:
   nguyenston:
     dotfiles:
@@ -49,3 +57,5 @@ profiles:
     - d_config_nvim_lua_user
     - d_config_picom
     - d_config_alacritty
+    - f_xresources
+    - d_config_eww
